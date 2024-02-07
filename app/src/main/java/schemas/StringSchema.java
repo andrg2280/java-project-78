@@ -1,18 +1,22 @@
 package schemas;
 
-public class StringSchema {
-    public StringSchema required() {
-        return this;
-    }
+import java.util.Objects;
+import java.util.function.Predicate;
 
-    public StringSchema minLength(int length) {
+public class StringSchema  extends BaseSchema{
+    public final StringSchema required() {
+        Predicate<Object> strCondition = s -> !(Objects.equals(s, "") || s == null) && s instanceof String;
+        addCondition(strCondition);
         return this;
     }
-
-    public StringSchema contains(String str) {
+    public final StringSchema minLength(int length) {
+        Predicate<Object> strCondition = s -> ((String) s).length() > length;
+        addCondition(strCondition);
         return this;
     }
-    public boolean isValid(Object data) {
-        return true;
+    public final StringSchema contains(String content) {
+        Predicate<Object> strCondition = s -> ((String) s).contains(content);
+        addCondition(strCondition);
+        return this;
     }
 }
