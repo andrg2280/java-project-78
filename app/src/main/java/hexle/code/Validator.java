@@ -1,6 +1,8 @@
-import schemas.MapSchema;
-import schemas.NumberSchema;
-import schemas.StringSchema;
+package hexle.code;
+
+import hexle.code.schemas.MapSchema;
+import hexle.code.schemas.NumberSchema;
+import hexle.code.schemas.StringSchema;
 
 public class Validator {
     public static StringSchema string() {

@@ -1,8 +1,11 @@
+package hexlet.code;
+
+import hexle.code.Validator;
 import org.junit.jupiter.api.Test;
-import schemas.BaseSchema;
-import schemas.MapSchema;
-import schemas.NumberSchema;
-import schemas.StringSchema;
+import hexle.code.schemas.BaseSchema;
+import hexle.code.schemas.MapSchema;
+import hexle.code.schemas.NumberSchema;
+import hexle.code.schemas.StringSchema;
 
 import java.util.HashMap;
 import java.util.Map;

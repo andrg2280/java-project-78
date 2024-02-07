@@ -1,4 +1,4 @@
-package schemas;
+package hexle.code.schemas;
 
 import java.util.function.Predicate;
 
