@@ -1,15 +1,15 @@
 package schemas;
 
-public class StringSchema {
-    public StringSchema required() {
+public class NumberSchema {
+    public NumberSchema required() {
         return this;
     }
 
-    public StringSchema minLength(int length) {
+    public NumberSchema positive() {
         return this;
     }
 
-    public StringSchema contains(String str) {
+    public NumberSchema range(int lowerBound, int upperBound) {
         return this;
     }
     public boolean isValid(Object data) {
