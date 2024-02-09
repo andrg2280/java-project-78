@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.function.Predicate;
 
 
-public abstract class BaseSchema {
-    protected final List<Predicate<Object>> conditions;
+public abstract class BaseSchema<T> {
+    protected final List<Predicate<T>> conditions;
     protected BaseSchema() {
 
         this.conditions = new LinkedList<>();
     }
 
-    protected final void addCondition(Predicate<Object> condition) {
+    protected final void addCondition(Predicate<T> condition) {
 
         conditions.add(condition);
     }
-    public final boolean isValid(Object data) {
+    public final boolean isValid(T data) {
 
-        for (Predicate<Object> conditions : conditions) {
+        for (Predicate<T> conditions : conditions) {
             if (!conditions.test(data)) {
                 return false;
             }

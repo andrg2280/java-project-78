@@ -1,20 +1,21 @@
 package hexlet.code.schemas;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
-public class NumberSchema extends BaseSchema{
+public class NumberSchema extends BaseSchema<Integer> {
     public final NumberSchema required() {
-        Predicate<Object> numberCondition = n -> (n instanceof Integer);
+        Predicate<Integer> numberCondition = Objects::nonNull;
         addCondition(numberCondition);
         return this;
     }
     public final NumberSchema positive() {
-        Predicate<Object> numberCondition = n -> (n instanceof Integer i && i > 0 || n == null);
+        Predicate<Integer> numberCondition = n -> n > 0;
         addCondition(numberCondition);
         return this;
     }
     public final NumberSchema range(Integer min, Integer max) {
-        Predicate<Object> numberCondition = n ->  min <= (Integer) n && (Integer) n <= max;
+        Predicate<Integer> numberCondition = n ->  min <= n && n <= max;
         addCondition(numberCondition);
         return this;
     }

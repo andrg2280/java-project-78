@@ -3,15 +3,15 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class MapSchema extends BaseSchema{
+public class MapSchema extends BaseSchema<Map<?,?>> {
     public final MapSchema required() {
-        Predicate<Object> strCondition = m -> m instanceof Map;
+        Predicate<Map<?,?>> strCondition = m -> m instanceof Map;
 
         addCondition(strCondition);
         return this;
     }
     public final MapSchema sizeof(Integer size) {
-        Predicate<Object> strCondition = m -> ((Map<?, ?>) m).size() == size;
+        Predicate<Map<?,?>> strCondition = m ->  m.size() == size;
         addCondition(strCondition);
         return this;
     }
