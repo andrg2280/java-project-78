@@ -54,9 +54,9 @@ public class ValidatorTest {
         actual = schema.isValid(null);
         assertTrue(actual);
         actual = schema.required().positive().isValid(null);
-        assertTrue(actual);
+        assertFalse(actual);
         actual = schema.required().isValid(null);
-        assertTrue(actual);
+        assertFalse(actual);
         actual = schema.isValid(1);
         assertTrue(actual);
         actual = schema.positive().isValid(-1);
