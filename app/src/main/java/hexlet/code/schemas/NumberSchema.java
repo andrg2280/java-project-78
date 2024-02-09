@@ -5,11 +5,11 @@ import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
     public final NumberSchema required() {
-        Predicate<Integer> numberCondition = Objects::nonNull;
+        Predicate<Integer> numberCondition = n -> n instanceof Integer;
         addCondition(numberCondition);
         return this;
     }
-    public final NumberSchema positive() {
+    public final BaseSchema<Integer> positive() {
         Predicate<Integer> numberCondition = n -> n > 0;
         addCondition(numberCondition);
         return this;

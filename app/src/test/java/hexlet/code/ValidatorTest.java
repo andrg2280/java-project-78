@@ -13,7 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ValidatorTest {
-
+    private MapSchema schema;
+    private static final int MIN_LENGTH = 3;
+    private static final int MAX_LENGTH = 100;
+    private static final int IN_RANGE = 25;
+    private static final int NEGATIVE = -5;
+    private static final int MIN = 18;
+    private static final int MAX = 35;
     @Test
     public void testValidStringSchema() {
         Validator v = new Validator();
@@ -103,38 +109,37 @@ public class ValidatorTest {
 
 
     @Test
-    public void testValidMapShapeSchema() {
-        Validator v = new Validator();
-        MapSchema schema = v.map();
-        Map<String, BaseSchema> schemas = new HashMap<>();
-        boolean actual;
-        schemas.put("name", v.string().minLength(4));
-        schemas.put("age", v.number().positive());
+    public <T> void testValidMapShapeSchema() {
+        schema = Validator.map();
+        Map<String, BaseSchema<T>> schemas = new HashMap<>();
+        schemas.put("name", (BaseSchema<T>) Validator.string().required());
+        schemas.put("age", (BaseSchema<T>) Validator.number().required().range(MIN, MAX));
+
         schema.shape(schemas);
-        Map<String, Object> map1 = new HashMap<>();
-        map1.put("name", "Name1");
-        map1.put("age", 1);
-        actual = schema.isValid(map1);
-        assertTrue(actual);
-        Map<Object, Object> map2 = new HashMap<>();
-        map2.put("name", "Jeff");
-        map2.put("age", null);
-        actual = schema.isValid(map2);
-        assertFalse(actual);
-        Map<String, Object> map3 = new HashMap<>();
-        map3.put("name", "");
-        map3.put("age", null);
-        actual = schema.isValid(map3);
-        assertFalse(actual);
-        Map<String, Object> map4 = new HashMap<>();
-        map4.put("name", "Molly");
-        map4.put("age", -5);
-        actual = schema.isValid(map4);
-        assertFalse(actual);
-        Map<String, Object> map5 = new HashMap<>();
-        map5.put("name", "Nil");
-        map5.put("age", 5);
-        actual = schema.isValid(map5);
-        assertFalse(actual);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", 100);
+        assertFalse(schema.isValid(human1));
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+        assertFalse(schema.isValid(human2));
+
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+        assertFalse(schema.isValid(human3));
+
+        Map<String, Object> human4 = new HashMap<>();
+        human4.put("name", "Valya");
+        human4.put("age", NEGATIVE);
+        assertFalse(schema.isValid(human4));
+
+        Map<String, Object> human5 = new HashMap<>();
+        human5.put("name", " ");
+        human5.put("age", IN_RANGE);
+        assertTrue(schema.isValid(human5));
     }
 }

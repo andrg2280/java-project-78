@@ -15,13 +15,8 @@ public class MapSchema extends BaseSchema<Map<?,?>> {
         addCondition(strCondition);
         return this;
     }
-    public MapSchema shape(Map<String, BaseSchema> schemas) {
-
-        for (Map.Entry<String, BaseSchema> enter : schemas.entrySet()) {
-            String key = enter.getKey();
-            addCondition(o -> schemas.get(key).isValid(((Map<?, ?>) o).get(key)));
-        }
-
+    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
+        schemas.keySet().forEach(key -> super.addCondition(s -> schemas.get(key).isValid((T) s.get(key))));
         return this;
     }
 }
