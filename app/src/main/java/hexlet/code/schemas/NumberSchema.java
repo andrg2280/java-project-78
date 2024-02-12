@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
     public final NumberSchema required() {
-        Predicate<Integer> numberCondition = n -> (n == null || n.equals(n));
+        Predicate<Integer> numberCondition = n -> n != null;
         addCondition(numberCondition);
         return this;
     }
