@@ -19,7 +19,7 @@ public abstract class BaseSchema<T> {
     public final boolean isValid(T data) {
 
         for (Predicate<T> conditions : conditions) {
-            if (!conditions.test(data)) {
+            if ((conditions == null) || !(conditions.test(data))) {
                 return false;
             }
         }
