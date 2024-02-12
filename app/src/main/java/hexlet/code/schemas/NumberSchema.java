@@ -10,7 +10,7 @@ public class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
     public final BaseSchema<Integer> positive() {
-        Predicate<Integer> numberCondition = n -> (n > 0 || n == null);
+        Predicate<Integer> numberCondition = n -> (n != null && n > 0);
         addCondition(numberCondition);
         return this;
     }
