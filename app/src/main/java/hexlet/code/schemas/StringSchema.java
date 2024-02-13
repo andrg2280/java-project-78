@@ -12,8 +12,8 @@ public class StringSchema  extends BaseSchema<String> {
     }
     public final StringSchema required() {
         required = true;
-        //Predicate<String> strCondition = s -> !(Objects.equals(s, "") || s == null) && s instanceof String;
-       // addCheck("required",  strCondition);
+        Predicate<String> strCondition = s -> !(Objects.equals(s, "") || s == null) && s instanceof String;
+        addCheck("required",  strCondition);
         return this;
     }
     public final StringSchema minLength(int length) {

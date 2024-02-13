@@ -35,7 +35,7 @@ public class ValidatorTest {
         schema.required();
         assertTrue(schema.isValid("what does the fox say"));
         assertTrue(schema.isValid("hexlet"));
-      //  assertFalse(schema.isValid(""));
+        assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(null));
 
         schema.required().contains("ab").minLength(5);
