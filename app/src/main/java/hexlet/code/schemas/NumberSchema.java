@@ -4,8 +4,9 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
+
     public final NumberSchema required() {
-        Predicate<Integer> numberCondition = n -> n != null;
+        Predicate<Integer> numberCondition = n -> n instanceof Integer;
         addCondition(numberCondition);
         return this;
     }
