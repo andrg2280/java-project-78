@@ -59,10 +59,32 @@ public class ValidatorTest {
         Validator v = new Validator();
         NumberSchema schema = v.number();
         boolean actual;
+        assertTrue(schema.isValid(5));
+        assertTrue(schema.isValid(null));
+
+        schema.positive();
+        assertTrue(schema.isValid(null));
+
+        schema.required();
+        assertFalse(schema.isValid(null));
+        assertFalse(schema.isValid(-10));
+        assertFalse(schema.isValid(0));
+        assertTrue(schema.isValid(10));
+
+        schema.range(5, 10);
+        assertTrue(schema.isValid(5));
+        assertTrue(schema.isValid(10));
+        assertFalse(schema.isValid(4));
+        assertFalse(schema.isValid(11));
+
+        schema.range(6, 9);
+        assertFalse(schema.isValid(5));
+        assertFalse(schema.isValid(10));
+
         actual = schema.isValid(1);
         assertTrue(actual);
         actual = schema.isValid(null);
-        assertTrue(actual);
+        assertFalse(actual);
         actual = schema.required().isValid(null);
         assertFalse(actual);
         actual = schema.required().positive().isValid(null);
