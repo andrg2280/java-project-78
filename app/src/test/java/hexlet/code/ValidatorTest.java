@@ -22,8 +22,7 @@ public class ValidatorTest {
     private static final int MAX = 35;
     @Test
     public void testValidStringSchema() {
-        Validator v = new Validator();
-        StringSchema schema = v.string();
+        StringSchema  schema = Validator.string();
         boolean actual;
         actual = schema.isValid("");
         assertTrue(actual);
@@ -56,8 +55,7 @@ public class ValidatorTest {
 
     @Test
     public void testNumberValidator() {
-        Validator v = new Validator();
-        NumberSchema schema = v.number();
+        NumberSchema  schema = Validator.number();
         boolean actual;
         assertTrue(schema.isValid(5));
         assertTrue(schema.isValid(null));
@@ -95,8 +93,7 @@ public class ValidatorTest {
 
     @Test
     public void testValidMapSchema() {
-        Validator v = new Validator();
-        MapSchema schema = v.map();
+        MapSchema  schema = Validator.map();
         boolean actual;
         actual = schema.isValid(null);
         assertTrue(actual);
@@ -105,7 +102,7 @@ public class ValidatorTest {
         assertFalse(actual);
         actual = schema.isValid(new HashMap<>());
         assertTrue(actual);
-        Map<String, String>data = new HashMap<>();
+        Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
         actual = schema.isValid(data);
         assertTrue(actual);
