@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ValidatorTest {
-    private MapSchema schema;
     private static final int MIN_LENGTH = 3;
     private static final int MAX_LENGTH = 100;
     private static final int IN_RANGE = 25;
@@ -119,7 +118,7 @@ public class ValidatorTest {
 
     @Test
     public <T> void testValidMapShapeSchema() {
-        schema = Validator.map();
+        MapSchema schema = Validator.map();
         Map<String, BaseSchema<T>> schemas = new HashMap<>();
         schemas.put("name", (BaseSchema<T>) Validator.string().required());
         schemas.put("age", (BaseSchema<T>) Validator.number().required().range(MIN, MAX));

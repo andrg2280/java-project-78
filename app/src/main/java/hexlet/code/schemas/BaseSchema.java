@@ -13,17 +13,17 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
     public final boolean isValid(T value) {
-       if (!required) {
-           var validate = checks.get("required");
-           if (!validate.test(value)) {
-               return true;
-           }
-       }
-       for (var validate : checks.values()) {
-           if (!validate.test(value)) {
-               return false;
-           }
-       }
-       return true;
+        if (!required) {
+            var validate = checks.get("required");
+            if (!validate.test(value)) {
+                return true;
+            }
+         }
+         for (var validate : checks.values()) {
+             if (!validate.test(value)) {
+                  return false;
+              }
+          }
+         return true;
    }
 }
