@@ -18,12 +18,12 @@ public abstract class BaseSchema<T> {
             if (!validate.test(value)) {
                 return true;
             }
-         }
-         for (var validate : checks.values()) {
-             if (!validate.test(value)) {
-                  return false;
-              }
-          }
-         return true;
-   }
+        }
+        for (var validate : checks.values()) {
+            if (!validate.test(value)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
