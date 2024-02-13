@@ -18,8 +18,8 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         addCheck("sizeof", strCondition);
         return this;
     }
-    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
+    public final <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
         schemas.keySet().forEach(key -> super.addCheck("shape",  s -> schemas.get(key).isValid((T) s.get(key))));
         return this;
-  }
+    }
 }

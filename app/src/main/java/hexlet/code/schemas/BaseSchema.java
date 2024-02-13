@@ -12,7 +12,7 @@ public abstract class BaseSchema<T> {
     protected final void addCheck(String name, Predicate<T> validate) {
         checks.put(name, validate);
     }
-   public final boolean isValid(T value) {
+    public final boolean isValid(T value) {
        if (!required) {
            var validate = checks.get("required");
            if (!validate.test(value)) {
