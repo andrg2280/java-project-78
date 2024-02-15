@@ -1,5 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'checkstyle'
+    id 'com.adarshr.test-logger' version '3.0.0'
+    id 'com.github.ben-manes.versions' version '0.39.0'
+    id 'jacoco'
 }
 
 group = 'hexlet.code'
@@ -7,6 +12,12 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+compileJava {
+    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
+}
+application {
+    mainClass = 'hexlet.code.App'
 }
 
 dependencies {
@@ -16,4 +27,23 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+checkstyle {
+    toolVersion = '10.3.3'
+}
+
+checkstyleMain {
+    source ='app/src/main/java'
+}
+
+checkstyleTest {
+    source ='app/src/test/java'
 }
